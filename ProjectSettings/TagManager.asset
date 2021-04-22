@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Plank
+  - Terrain
+  - Bot
+  - Spinning Obstacle
+  - JumpPoint
+  - Camera
+  - Water
+  - FinishPosition
+  - Pendulum
+  - PlankNavigation
+  - Waypoint
+  - WaypointRoot
+  - Start
+  - TransparentPlanksTrigger
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Planks
+  - Player
+  - Terrain
+  - Camera
+  - Bot
+  - Finish
+  - Obstacles
+  - BotNavigaton
+  - PlanksNavigation
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

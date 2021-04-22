@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb885e2cc7a179d45bb240dce7ba7f56, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  defaultSpeed: 10
+  speedMultPerCheck: 1.05
+  speedMultCheckDelay: 0.5
+  maxSpeed: 20
+  turnSpeed: 120
+  jumpHeight: 1.5
+  gravity: 20
+  waterGravity: 2.5
+  clingDistance: 0.3
+  verticalOffset: 0.05
+  colliderChangeDuration: 0.25
+  clingMask:
+    serializedVersion: 2
+    m_Bits: 9473
+  planksOpaqueMaterial: {fileID: 2100000, guid: 8c6ed1e51bf2b4f439f676dc22f94189,
+    type: 2}
+  planksTransparentMaterial: {fileID: 2100000, guid: b08d8676d0961cb47b78d938ebcd0f28,
+    type: 2}
+  respawnPlanks: 1
+  plankRespawnTime: 5
+  plankStackOffset: 0.15
+  plankStackScale: 0.7
+  isFixedSpawnOffset: 1
+  fixedSpawnOffest: -0.0499
+  oversizeCount: 10
+  planksPerMeter: 2
+  planksStackBendMult: 0.00015
+  planksStackBendOffset: 30
+  raycastDistance: 1
+  raycastBoxSize: {x: 0.01, y: 0.1, z: 0.01}
+  footRaycastBoxSize: {x: 0.05, y: 0.1, z: 0.05}
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 25857
+  planksCollectionMod: 0.25
+  stackNavigationColliderActivationThreshold: 5
+  pendulumCollisionForce: 75
+  pendulumVerticalModifier: 0.25
+  minMoveDistByExtForce: 0.3
+  forceDecreaseMult: 3
+  extraPointsMultiplier: 3
