@@ -6,7 +6,7 @@
 - Система движения по контрольным точкам
 - Система реагирования на препятствия
 
-## Система движения по контрольным точкам
+## Система контрольных точек
 
 За основу была взята система контрольных точек с YouTube канала Game Dev Guide [Tutorial Link](https://www.youtube.com/watch?v=MXCZ-n5VyJc)
 
@@ -53,5 +53,8 @@
 
 <img src="https://github.com/FurryBlackFox/Shortcut-Run-Imitation/blob/main/Description%20Data/Shortcut%20Run%20Bot%20AI%20Generated%20Branches.jpg">
 
+> Продолжение следует
+
+## Система движения по контрольным точкам
 
 ## Система реагирования на препятствия
