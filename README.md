@@ -27,4 +27,10 @@ Avarage FPS on Xiaomi Redmi Note 4x is 30-45. Newer devices usually don't drop b
 
 ## Functionality description
 
+Functionality Description is separated into several parts:
+
+- Bot AI
+- Level Creation Process
+- Use Of Planks
+
 > will be completed soon.
