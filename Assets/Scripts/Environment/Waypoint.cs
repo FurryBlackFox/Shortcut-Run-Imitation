@@ -64,9 +64,11 @@ public class Waypoint : MonoBehaviour
         
         Gizmos.color = Color.yellow * 0.5f;
         Gizmos.DrawSphere(pos, 0.5f);
-
+        
+        
         if(showWaypointsNames)
-            CustomTools.DrawString($"{name} + {distanceToFinish}", transform.position, 12, Color.white, Color.black * 0.75f);
+            CustomTools.DrawString($"{name} \n {distanceToFinish:F1}m", transform.position, 12, Color.white, Color
+                .black * 0.75f);
         
         
         if(!showWaypointBorders)
@@ -91,7 +93,7 @@ public class Waypoint : MonoBehaviour
             
             CustomTools.DrawThickLine(LeftWidth, nextWaypoint.LeftWidth, Color.green, thickness);
         }
-
+        
         if (branches == null) 
             return;
         

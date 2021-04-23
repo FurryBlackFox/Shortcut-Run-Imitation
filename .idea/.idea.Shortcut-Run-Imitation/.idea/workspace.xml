@@ -20,9 +20,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/WaypointManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameControllers/SaveSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@7.5.3/Runtime/Debugging/DebugManager.Actions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/SafeAreaController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Waypoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIScreensController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Settings/Input/PlayerInputController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameControllers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -35,6 +37,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameControllers/SaveSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIScreensController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/SafeAreaController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Environment/Waypoint.cs" />
       </list>
     </option>
   </component>
@@ -73,7 +76,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619120602540</updated>
-      <workItem from="1619120608915" duration="5557000" />
+      <workItem from="1619120608915" duration="9371000" />
     </task>
     <servers />
   </component>
