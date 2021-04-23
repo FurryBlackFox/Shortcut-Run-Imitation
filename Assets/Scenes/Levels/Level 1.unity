@@ -5470,6 +5470,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 45d7.5m Inverse
       objectReference: {fileID: 0}
+    - target: {fileID: 4835228071388031118, guid: 67ed771c8c32a764188d73a6f5cb6090,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67ed771c8c32a764188d73a6f5cb6090, type: 3}
 --- !u!4 &1487062742 stripped
@@ -7058,8 +7063,6 @@ MonoBehaviour:
     cost: 11
   - waypoint: {fileID: 428618253}
     cost: 13
-  - waypoint: {fileID: 860547198}
-    cost: 50
   branchRatio: 0.1
 --- !u!4 &2010541603 stripped
 Transform:
