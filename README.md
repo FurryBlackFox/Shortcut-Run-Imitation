@@ -1,10 +1,8 @@
 # Shortcut Run Imitation
 
-> This project is not finished yet. New features, codestyle and bug fixes will appear as soon as possible.
+> This project is not finished yet. New cool features, codestyle and bug fixes will appear as soon as possible.
 
 > According to the paragraph above, some parts may change completely.
-
-> File has some gifs, so it could take some time to load.
 
 ## Packages Used
 
