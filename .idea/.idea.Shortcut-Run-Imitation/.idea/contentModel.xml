@@ -76,6 +76,7 @@
           </e>
           <e p="UI" t="Include">
             <e p="CharacterCanvas.cs" t="Include" />
+            <e p="SafeAreaController.cs" t="Include" />
             <e p="UIButtonsEvents.cs" t="Include" />
             <e p="UICharactersResultPointsController.cs" t="Include" />
             <e p="UIClaimPointsButton.cs" t="Include" />

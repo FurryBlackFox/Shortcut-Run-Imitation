@@ -35,7 +35,7 @@ MonoBehaviour:
   plankStackOffset: 0.15
   plankStackScale: 0.7
   isFixedSpawnOffset: 1
-  fixedSpawnOffest: -0.0499
+  fixedSpawnOffest: -0.0495
   oversizeCount: 10
   planksPerMeter: 2
   planksStackBendMult: 0.00015
