@@ -23,6 +23,8 @@ Brief core gameplay description:
 
 <img src="https://github.com/FurryBlackFox/Shortcut-Run-Imitation/blob/main/Description%20Data/Shortcut%20Run%20Preview.jpg" width="360" height="640">
 
+[Gameplay GIF](./Description%20Data/Shortcut%20Run%20Gameplay.gif)
+
 Avarage FPS on Xiaomi Redmi Note 4x is 30-45. Newer devices usually don't drop below 55. 
 
 ## Functionality description
