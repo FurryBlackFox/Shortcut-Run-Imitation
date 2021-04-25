@@ -62,8 +62,6 @@ public class Finish : MonoBehaviour
         
         if(finishersList.Count == charactersCount)
             OnEveryoneFinished?.Invoke();
-            
-        Debug.Log($"Finish reached by {character.CharacterName}");
     }
 
     public Vector3 GetCameraPosition()

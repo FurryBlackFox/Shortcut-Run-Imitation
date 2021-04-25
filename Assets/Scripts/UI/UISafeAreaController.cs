@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SafeAreaController : MonoBehaviour
+public class UISafeAreaController : MonoBehaviour
 {
     private CanvasScaler canvasScaler;
     private float bottomUnits, topUnits;

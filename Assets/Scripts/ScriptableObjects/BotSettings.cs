@@ -10,12 +10,11 @@ public class BotSettings : ScriptableObject
     [SerializeField] private float minFinishSqrDistance = 10f;
     [SerializeField, Range(0f, 1f)] private float angleLerp = 0.6f;
     [SerializeField, Range(0f, 1f)] private float navigationAngleMult = 1f;
-    [SerializeField, Range(1f, 2f)]     private float targetLerpMult = 1.25f;
-    
+
     [Header("Obstacle Avoidance")] 
     [SerializeField] private bool avoidEnabled = true;
     [SerializeField, Range(0, 11)] private int raysCount = 5;
-    [SerializeField, Range(-1f, 1f)] private float raysOffset = 0.3f; 
+    [SerializeField, Range(-1f, 1f)] private float raysVerticalOffset = 0.3f; 
     [SerializeField] private float anglePerRay = 12.5f;
     [SerializeField] private float rayDistance = 10f;
     [SerializeField] private float centralRayDistance = 12.5f;
@@ -35,14 +34,13 @@ public class BotSettings : ScriptableObject
     public float AngleLerp => angleLerp;
 
     public float NavigationAngleMult => navigationAngleMult;
-
-    public float TargetLerpMult => targetLerpMult;
+    
 
     public bool AvoidEnabled => avoidEnabled;
 
     public int RaysCount => raysCount;
 
-    public float RaysOffset => raysOffset;
+    public float RaysVerticalOffset => raysVerticalOffset;
 
     public float AnglePerRay => anglePerRay;
 

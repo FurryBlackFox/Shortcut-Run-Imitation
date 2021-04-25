@@ -12,8 +12,6 @@ public class BotMovementController : CharacterMovementController
         public Vector3 vector;
         public float modifier;
     }
-
-
     
     [Header("Navigation")]
     public Waypoint enterWaypoint = default;
@@ -40,8 +38,7 @@ public class BotMovementController : CharacterMovementController
     private Waypoint targetWaypoint;
     private float currMinWaypSqrDistance;
     
-    private Vector3 currentTarget, nextTarget, targetWaypPos;
-    private float targetLerp, targetLerpDuration;
+
 
 
     protected override void Awake()
@@ -92,9 +89,6 @@ public class BotMovementController : CharacterMovementController
 
         if (showTarget)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(currentTarget, 1f);
-            Gizmos.DrawSphere(nextTarget, 1f);
             Gizmos.color = Color.magenta;
             Gizmos.DrawSphere(target, Mathf.Sqrt(currMinWaypSqrDistance));
         }
@@ -103,7 +97,7 @@ public class BotMovementController : CharacterMovementController
         {
             var position = transform.position;
 
-            position.y += botSettings.RaysOffset;
+            position.y += botSettings.RaysVerticalOffset;
             for (var i = 0; i < rays.Length; i++)
             {
                 Vector3 p;
@@ -142,14 +136,7 @@ public class BotMovementController : CharacterMovementController
  
     private void WaypointMovement()
     {
-        if (targetLerp <= 1f)
-        {
-            targetLerp += Time.fixedDeltaTime / targetLerpDuration;
-            target = Vector3.Lerp(currentTarget, nextTarget, targetLerp);
-            target = Vector3.Lerp(transform.position, target, targetLerp);
-        }
-        
-        var sqrDistance = CalculateSqrDistance(nextTarget);
+        var sqrDistance = CalculateSqrDistance(target);
         if (sqrDistance > currMinWaypSqrDistance)
         {
             rotAngle = CalculateRotAngle(target);
@@ -159,19 +146,12 @@ public class BotMovementController : CharacterMovementController
         }
         else
         {
-            currentTarget = nextTarget;
             targetWaypoint = ChooseNextTarget(targetWaypoint, bot.PlanksCount);
             if (targetWaypoint)
             {
-                nextTarget = targetWaypoint.GetRandomPosition();
-                    
+                target = targetWaypoint.GetRandomPosition();
                 currMinWaypSqrDistance = targetWaypoint.IsLast() ? botSettings.MinFinishSqrDistance : 
                 botSettings.MinWaypSqrDistance;
-                targetLerp = 0f;
-                var sqrDifferenceDistance = (nextTarget - currentTarget).sqrMagnitude;
-                var targetTransitionSpeed = gameSettings.MaxSpeed * botSettings.TargetLerpMult;
-                targetTransitionSpeed *= targetTransitionSpeed;
-                targetLerpDuration =  sqrDifferenceDistance / targetTransitionSpeed ;
             }
         }
     }
@@ -179,9 +159,8 @@ public class BotMovementController : CharacterMovementController
     protected void SetStartTarget()
     {
         targetWaypoint = enterWaypoint;
-        nextTarget = currentTarget = target = targetWaypoint.GetRandomPosition();
+        target = targetWaypoint.GetRandomPosition();
         currMinWaypSqrDistance = botSettings.MinWaypSqrDistance;
-        targetLerp = 1f;
     }
 
     private Waypoint ChooseNextTarget(Waypoint current, int planksCount)
@@ -254,9 +233,7 @@ public class BotMovementController : CharacterMovementController
         transform.Rotate(Vector3.up, deltaRotation);
         return deltaRotation;
     }
-
-
-
+    
     #endregion
 
 
@@ -301,58 +278,28 @@ public class BotMovementController : CharacterMovementController
     {
         var transf = transform;
         var pos = transf.position;
-        pos.y += botSettings.RaysOffset;
+        pos.y += botSettings.RaysVerticalOffset;
         
         Ray ray;
         prevAvoidAngle = avoidRotAngle;
         avoidRotAngle = 0f;
-        RaycastHit hitInfo;
-
-        float strength;
+        
         var rayDistance = botSettings.RayDistance;
         var raycastMask = botSettings.RaycastMask;
         var centralRayDistance = botSettings.CentralRayDistance;
         var modifier = 0f;
         
-        Transform hitTransf;
-        for (var i = 1; i < botSettings.RaysCount; i++)
+        var raysCount = botSettings.RaysCount * 2 - 1;
+        for (var i = 1; i < raysCount; i++)
         {
-            ray = new Ray(pos, transf.TransformDirection(rays[i * 2 - 1].vector));
-            if (Physics.Raycast(ray, out hitInfo, rayDistance, raycastMask))
-            {
-                strength = (rayDistance - hitInfo.distance) * oneDivRayDistance;
-                hitTransf = hitInfo.transform;
-                if (hitTransf.CompareTag("PlankNavigation"))
-                {
-                    if(bot.NavigationSphere.PlanksTransforms.Contains(hitTransf))
-                        modifier -= rays[i * 2 - 1].modifier * strength;
-                }
-                else
-                {
-                    modifier += rays[i * 2 - 1].modifier * strength;
-                }
-            }
-            ray = new Ray(pos,  transf.TransformDirection(rays[i*2].vector));
-            if (Physics.Raycast(ray, out hitInfo, rayDistance, raycastMask))
-            {
-                strength = (rayDistance - hitInfo.distance) * oneDivRayDistance;
-                hitTransf = hitInfo.transform;
-                if (hitInfo.transform.CompareTag("PlankNavigation"))
-                {
-                    if(bot.NavigationSphere.PlanksTransforms.Contains(hitTransf))
-                        modifier -= rays[i * 2].modifier * strength;
-                }
-                else
-                {
-                    modifier += rays[i * 2].modifier * strength;
-                }
-            }
+            ray = new Ray(pos,  transf.TransformDirection(rays[i].vector));
+            modifier += RayProcessing(ray, rayDistance, rays[i].modifier, raycastMask);
         }
         ray = new Ray(pos, transf.forward);
-        if (Physics.Raycast(ray, out hitInfo, centralRayDistance, raycastMask))
+        if (Physics.Raycast(ray, out var hitInfo, centralRayDistance, raycastMask))
         {
-            strength = (centralRayDistance - hitInfo.distance) / centralRayDistance;
-            hitTransf = hitInfo.transform;
+            var strength = (centralRayDistance - hitInfo.distance) / centralRayDistance;
+            var hitTransf = hitInfo.transform;
             if (hitInfo.transform.CompareTag("PlankNavigation"))
             {
                 if(bot.NavigationSphere.PlanksTransforms.Contains(hitTransf))
@@ -366,23 +313,39 @@ public class BotMovementController : CharacterMovementController
                     if (cashedSpinObsTrasf != hitInfo.transform)
                     {
                         cashedSpinObsTrasf = hitInfo.transform;
-                        //cashedSpinObs = hitTransf.GetComponent<SpinningObstacle>(); //TODO: replace //TODO: recheck
                         cashedSpinObsPos = cashedSpinObsTrasf.position;
                     }
                 
                     var posSign = -Mathf.Sign(CalculateRotAngle(cashedSpinObsPos));
-                    //var obsSign = -Mathf.Sign(cashedSpinObs.RotPerSec);
-                    var obsSign = 1f;
-                    modifier = posSign * obsSign * Mathf.Abs(modifier);  //TODO: recheck
+                    modifier = posSign * Mathf.Abs(modifier);  //TODO: recheck
                 }
-
             }
-            
         }
 
         avoidRotAngle = modifier * botSettings.MaxAvoidAngle;
         avoidRotAngle = Mathf.Lerp(prevAvoidAngle, avoidRotAngle, botSettings.AngleLerp);
+    }
+    
+    
 
+
+    private float RayProcessing(Ray ray, float rayDistance, float rayModifier , LayerMask raycastMask)
+    {
+        if (Physics.Raycast(ray, out var hitInfo, rayDistance, raycastMask))
+        {
+            var strength = (rayDistance - hitInfo.distance) * oneDivRayDistance;
+            var hitTransf = hitInfo.transform;
+            if (hitTransf.CompareTag("PlankNavigation"))
+            {
+                if(bot.NavigationSphere.PlanksTransforms.Contains(hitTransf))
+                    return -rayModifier * strength;
+            }
+            else
+            {
+                return rayModifier * strength;
+            }
+        }
+        return 0f;
     }
 
     #endregion
