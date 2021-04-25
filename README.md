@@ -25,7 +25,7 @@ Brief core gameplay description:
 
 [Gameplay GIF](./Description%20Data/Shortcut%20Run%20Gameplay.gif)
 
-Avarage FPS on Xiaomi Redmi Note 4x is 30-45. Newer devices usually don't drop below 55. 
+Average FPS on Xiaomi Redmi Note 4x is 30-45. Newer devices usually don't drop below 55. 
 
 ## Functionality description
 
