@@ -31,6 +31,7 @@
             <e p="PlayerInput.cs" t="Include" />
             <e p="PlayerMovementController.cs" t="Include" />
             <e p="PlayerPlanksController.cs" t="Include" />
+            <e p="PlayerVFXController.cs" t="Include" />
             <e p="RandomBotData.cs" t="Include" />
           </e>
           <e p="Debug" t="Include">
@@ -44,6 +45,7 @@
           <e p="Environment" t="Include">
             <e p="CharacterPositionChecker.cs" t="Include" />
             <e p="Finish.cs" t="Include" />
+            <e p="FinishVFXController.cs" t="Include" />
             <e p="FollowTarget.cs" t="Include" />
             <e p="JumpPoint.cs" t="Include" />
             <e p="LookAtTarget.cs" t="Include" />
@@ -58,6 +60,7 @@
             <e p="Waypoint.cs" t="Include" />
           </e>
           <e p="GameControllers" t="Include">
+            <e p="BotSpawner.cs" t="Include" />
             <e p="CharacterDisposer.cs" t="Include" />
             <e p="GameDataKeeper.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />

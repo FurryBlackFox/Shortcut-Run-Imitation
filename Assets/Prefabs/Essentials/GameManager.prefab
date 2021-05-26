@@ -49,11 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetFramerate: -1
   enableMobileVSync: 0
-  spawnBots: 0
-  botsCount: 2
-  botPrefab: {fileID: 4932108650477323469, guid: 56cdd8351cb22d948a9eaf85fde3fec7,
-    type: 3}
-  enterWaypoint: {fileID: 0}
   restartDelay: 0
 --- !u!114 &3392594002573838464
 MonoBehaviour:
@@ -113,3 +108,8 @@ MonoBehaviour:
   characters:
   - {fileID: 0}
   gameSettings: {fileID: 11400000, guid: 511c9ff526b1b734ba3dd292bbde4a48, type: 2}
+  levelSequence: {fileID: 0}
+  botSettings: {fileID: 0}
+  waypointSettings: {fileID: 0}
+  enterWaypoint: {fileID: 0}
+  botPrefab: {fileID: 0}

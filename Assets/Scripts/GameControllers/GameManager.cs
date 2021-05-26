@@ -16,17 +16,13 @@ public class GameManager : MonoBehaviour
     
     [SerializeField, Min(-1)] private int targetFramerate = 0;
     [SerializeField] private bool enableMobileVSync = true;
-    [SerializeField] private bool spawnBots = false;
-    [SerializeField, Range(0, 4)] private int botsCount = 3;
+
     [SerializeField, Range(0f, 5f)] private float restartDelay = 2f;
-
-
+    
     private Player player;
     private PlayerData playerData;
     private void Awake()
     {
-
-        
         isGameEnded = false;
         Application.targetFrameRate = targetFramerate;
         
@@ -64,9 +60,6 @@ public class GameManager : MonoBehaviour
 
         if (!enableMobileVSync && Application.isMobilePlatform)
             QualitySettings.vSyncCount = 0;
-        
-        if(spawnBots)
-            SpawnBots();
 
         SaveSystem.LoadPlayerSettings(ref playerData);
         OnPlayerCoinsChanged?.Invoke(playerData.CoinsCount);
@@ -81,16 +74,7 @@ public class GameManager : MonoBehaviour
         TriggerPlank.RespawnTime = gameSettings.PlankRespawnTime;
     }
 
-    private void SpawnBots()
-    {
-        for (var i = 0; i < botsCount; i++)
-        {
-            var bot = Instantiate(GameDataKeeper.S.BotPrefab, Vector3.zero, Quaternion.identity);
-            bot.name = $"Bot {i}";
 
-            GameDataKeeper.S.characters.Add(bot.GetComponent<Character>());
-        }
-    }
     
     private void OnStartHandler()
     {

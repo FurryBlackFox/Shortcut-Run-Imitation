@@ -10,6 +10,7 @@ public class BotSettings : ScriptableObject
     [SerializeField] private float minFinishSqrDistance = 10f;
     [SerializeField, Range(0f, 1f)] private float angleLerp = 0.6f;
     [SerializeField, Range(0f, 1f)] private float navigationAngleMult = 1f;
+    [SerializeField] private bool useRandomBranches = false;
 
     [Header("Obstacle Avoidance")] 
     [SerializeField] private bool avoidEnabled = true;
@@ -34,7 +35,9 @@ public class BotSettings : ScriptableObject
     public float AngleLerp => angleLerp;
 
     public float NavigationAngleMult => navigationAngleMult;
-    
+
+
+    public bool UseRandomBranches => useRandomBranches;
 
     public bool AvoidEnabled => avoidEnabled;
 

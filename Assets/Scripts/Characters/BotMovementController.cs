@@ -18,8 +18,11 @@ public class BotMovementController : CharacterMovementController
     
     [Header("Editor Tools")] 
     [SerializeField] private bool showRays = true;
+    [SerializeField] private Color raysColor = Color.blue;
     [SerializeField] private bool showTarget = true;
-
+    [SerializeField] private Color targetColor = Color.red;
+    [SerializeField] private bool showCashedObsPosition = true;
+    [SerializeField] private Color cashedObsPosColor = Color.cyan;
 
 
     private BotSettings botSettings;
@@ -85,19 +88,27 @@ public class BotMovementController : CharacterMovementController
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-        Gizmos.color = gizmosColor;
+
 
         if (showTarget)
         {
-            Gizmos.color = Color.magenta;
+            Gizmos.color = targetColor;
             Gizmos.DrawSphere(target, Mathf.Sqrt(currMinWaypSqrDistance));
         }
 
+        if (showCashedObsPosition)
+        {
+            Gizmos.color = cashedObsPosColor;
+            Gizmos.DrawSphere(cashedSpinObsPos, 1f);
+        }
+
+        
         if (Application.isPlaying && showRays)
         {
+            Gizmos.color = raysColor;
             var position = transform.position;
-
             position.y += botSettings.RaysVerticalOffset;
+            
             for (var i = 0; i < rays.Length; i++)
             {
                 Vector3 p;
@@ -107,11 +118,10 @@ public class BotMovementController : CharacterMovementController
                     p = position + transform.TransformDirection(rays[i].vector * botSettings.RayDistance);
                 Gizmos.DrawLine(position, p);
                 Handles.Label(p, $"{rays[i].modifier}");
-            } 
-            Gizmos.DrawSphere(cashedSpinObsPos, 1f);
+            }
         }
-
     }
+    
     
 #endif
     
@@ -150,8 +160,9 @@ public class BotMovementController : CharacterMovementController
             if (targetWaypoint)
             {
                 target = targetWaypoint.GetRandomPosition();
-                currMinWaypSqrDistance = targetWaypoint.IsLast() ? botSettings.MinFinishSqrDistance : 
-                botSettings.MinWaypSqrDistance;
+                currMinWaypSqrDistance = targetWaypoint.IsLast()
+                    ? botSettings.MinFinishSqrDistance
+                    : botSettings.MinWaypSqrDistance;
             }
         }
     }
@@ -171,7 +182,7 @@ public class BotMovementController : CharacterMovementController
             return current.nextWaypoint;
 
         var availableBranches = new List<Branch>();
-
+        
         foreach (var branch in current.branches)
         {
             if (branch.cost <= planksCount)
@@ -180,8 +191,8 @@ public class BotMovementController : CharacterMovementController
 
         if (availableBranches.Count > 0)
         {
-            return availableBranches[Random.Range(0, availableBranches.Count)].waypoint;
-
+            var index = botSettings.UseRandomBranches ? Random.Range(0, availableBranches.Count) : 0;
+            return availableBranches[index].waypoint;
         }
 
         return current.nextWaypoint;

@@ -11044,7 +11044,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -15917,7 +15917,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -36646,7 +36646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e5f7a401d23444da850e29b3d6c298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UICharacterNameText: {fileID: 8999989537379206488}
+  uiCharacterNameText: {fileID: 8999989537379206488}
   showTrace: 0
   navigationSphere: {fileID: 8999989537379206500}
 --- !u!114 &8999989537379206489
@@ -36778,9 +36778,9 @@ MonoBehaviour:
   waterPosY: -1
   speedBoostSmokeEffect: {fileID: 4247969888408653328}
   speedBoostRingsEffect: {fileID: 3514529494308431717}
-  speedBoostThreshold: 1.2
   firstPositionEffect: {fileID: 4464030376559178457}
   crownSmokeEffect: {fileID: 966068315433286015}
+  speedBoostThreshold: 1.2
   firstPlaceCrownGO: {fileID: 1121668076379276718}
 --- !u!114 &988395963914972600
 MonoBehaviour:
@@ -36799,7 +36799,11 @@ MonoBehaviour:
   gizmosColor: {r: 0, g: 0, b: 0, a: 0}
   enterWaypoint: {fileID: 0}
   showRays: 1
+  raysColor: {r: 0, g: 0, b: 1, a: 1}
   showTarget: 1
+  targetColor: {r: 1, g: 0, b: 0, a: 1}
+  showCashedObsPosition: 1
+  cashedObsPosColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &2085826845509339179
 MonoBehaviour:
   m_ObjectHideFlags: 0

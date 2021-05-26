@@ -1388,8 +1388,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1039860dca8b8f344bd180c9503e27ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDuration: 2
   uiText: {fileID: 0}
+  countDuration: 1
+  enableFading: 1
+  fadingDistanceScrPercent: 0.1
+  fadingDuration: 1
 --- !u!1 &7516979960992341250
 GameObject:
   m_ObjectHideFlags: 0
@@ -4115,8 +4118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1039860dca8b8f344bd180c9503e27ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDuration: 2
   uiText: {fileID: 0}
+  countDuration: 2
+  enableFading: 1
+  fadingDistanceScrPercent: 0.1
+  fadingDuration: 1
 --- !u!1 &8977766346798541468
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,32 +20,61 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameControllers/GameDataKeeper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/WaypointManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Finish.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/CharacterVFXController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameControllers/CharacterDisposer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameControllers/SaveSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@7.5.3/Runtime/Debugging/DebugManager.Actions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIScreensController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameControllers/BotSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Settings/Input/PlayerInputController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Plank.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/CharacterAnimator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Bot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Character.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UISafeAreaController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/BotSettings.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Waypoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/CharacterPlanksController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/CharacterMovementController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/FinishVFXController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/PlayerVFXController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameControllers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/BotMovementController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Finish.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIPlankCounter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIScreensController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Plank.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UICoinsDisplayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/TriggerPlank.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Waypoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/BakeTextureWindow.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameControllers/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Settings/Input/PlayerInputController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameControllers/SaveSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIScreensController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/SafeAreaController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Environment/Waypoint.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/UISafeAreaController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/BotMovementController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/BotSettings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Environment/Finish.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Environment/Waypoint.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/BotSettings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/BotMovementController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Editor/WaypointManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterMovementController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterAnimator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameControllers/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameControllers/GameDataKeeper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameControllers/BotSpawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Bot.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/CharacterVFXController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/PlayerVFXController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Environment/FinishVFXController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UICoinsDisplayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/UIPlankCounter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Character.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Editor/BakeTextureWindow.cs" />
       </list>
     </option>
   </component>
@@ -85,7 +114,11 @@
       <option name="presentableId" value="Default" />
       <updated>1619120602540</updated>
       <workItem from="1619120608915" duration="9969000" />
-      <workItem from="1619297586993" duration="10941000" />
+      <workItem from="1619297586993" duration="11574000" />
+      <workItem from="1619536564928" duration="16913000" />
+      <workItem from="1620581176031" duration="1015000" />
+      <workItem from="1621548241012" duration="6880000" />
+      <workItem from="1621896949410" duration="8376000" />
     </task>
     <servers />
   </component>

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -911,12 +911,16 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 922173818}
     cost: 11
+    coefficient: 0
   - waypoint: {fileID: 1785686397}
     cost: 11
+    coefficient: 0
   - waypoint: {fileID: 482219525}
     cost: 13
+    coefficient: 0
   - waypoint: {fileID: 1480715974}
     cost: 10
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &146753604
 Transform:
@@ -1257,6 +1261,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 146753603}
     cost: 10
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &259618840
 Transform:
@@ -1525,12 +1530,16 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 125858331}
     cost: 11
+    coefficient: 0
   - waypoint: {fileID: 259618839}
     cost: 11
+    coefficient: 0
   - waypoint: {fileID: 842589142}
     cost: 12
+    coefficient: 0
   - waypoint: {fileID: 1680187579}
     cost: 11
+    coefficient: 0
   branchRatio: 0.1
 --- !u!1 &381603464
 GameObject:
@@ -1568,6 +1577,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 374015442}
     cost: 11
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &381603466
 Transform:
@@ -1710,6 +1720,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 1639188547}
     cost: 9
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &428618254
 Transform:
@@ -2439,6 +2450,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 889172444}
     cost: 13
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &782736685
 Transform:
@@ -2630,6 +2642,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 146753603}
     cost: 10
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &842589143
 Transform:
@@ -2914,6 +2927,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 1852288391}
     cost: 12
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &860547199
 Transform:
@@ -2965,10 +2979,13 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 2143715891}
     cost: 14
+    coefficient: 0
   - waypoint: {fileID: 954068547}
     cost: 12
+    coefficient: 0
   - waypoint: {fileID: 1183846490}
     cost: 15
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &889172445
 Transform:
@@ -3105,6 +3122,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 2002474658}
     cost: 12
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &922173819
 Transform:
@@ -3274,6 +3292,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 2133160450}
     cost: 11
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &959987467
 Transform:
@@ -3819,8 +3838,10 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 1852288391}
     cost: 9
+    coefficient: 0
   - waypoint: {fileID: 374015442}
     cost: 14
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &1100583222
 Transform:
@@ -4271,6 +4292,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 374015442}
     cost: 9
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &1159972895
 Transform:
@@ -5386,8 +5408,10 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 2002474658}
     cost: 17
+    coefficient: 0
   - waypoint: {fileID: 889172444}
     cost: 13
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &1480715975
 Transform:
@@ -5750,8 +5774,10 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 682754050}
     cost: 14
+    coefficient: 0
   - waypoint: {fileID: 1144340227}
     cost: 11
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &1639188548
 Transform:
@@ -5943,6 +5969,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 2133160450}
     cost: 9
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &1680187580
 Transform:
@@ -6469,6 +6496,7 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 2002474658}
     cost: 11
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &1785686398
 Transform:
@@ -6676,10 +6704,13 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 842589142}
     cost: 10
+    coefficient: 0
   - waypoint: {fileID: 823314992}
     cost: 10
+    coefficient: 0
   - waypoint: {fileID: 277129991}
     cost: 12
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &1852288392
 Transform:
@@ -7059,10 +7090,13 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 516839654}
     cost: 11
+    coefficient: 0
   - waypoint: {fileID: 1123750335}
     cost: 11
+    coefficient: 0
   - waypoint: {fileID: 428618253}
     cost: 13
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &2010541603 stripped
 Transform:
@@ -7865,10 +7899,13 @@ MonoBehaviour:
   branches:
   - waypoint: {fileID: 1132155205}
     cost: 13
+    coefficient: 0
   - waypoint: {fileID: 1287368167}
     cost: 11
+    coefficient: 0
   - waypoint: {fileID: 482219525}
     cost: 10
+    coefficient: 0
   branchRatio: 0.1
 --- !u!4 &2133160451
 Transform:

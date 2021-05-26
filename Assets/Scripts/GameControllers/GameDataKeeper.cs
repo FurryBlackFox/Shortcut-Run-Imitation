@@ -27,9 +27,7 @@ public class GameDataKeeper : MonoBehaviour
 
     [SerializeField] private Waypoint enterWaypoint = default;
     public Waypoint EnterWaypoint => enterWaypoint;
-    
-    [SerializeField] private Bot botPrefab = default;
-    public Bot BotPrefab => botPrefab;
+
     
     
 
@@ -45,7 +43,6 @@ public class GameDataKeeper : MonoBehaviour
 #if UNITY_EDITOR
         
         CustomTools.IsNull(gameSettings, nameof(gameSettings), name);
-        CustomTools.IsNull(botPrefab, nameof(botPrefab), name);
         CustomTools.IsNull(enterWaypoint, nameof(enterWaypoint), name);
         CustomTools.IsNull(botSettings, nameof(botSettings), name);
 

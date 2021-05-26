@@ -10,10 +10,7 @@ public struct Branch
 {
     public Waypoint waypoint;
     public int cost;
-    public void SetCost(int value)
-    {
-        this.cost = value;
-    }
+    public float coefficient;
 }
 
 [ExecuteInEditMode]

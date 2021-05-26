@@ -24,56 +24,14 @@ public class WaypointManager : EditorWindow
         
         centeredStyle = GUI.skin.GetStyle("Label");
         centeredStyle.alignment = TextAnchor.UpperCenter;
-
-        GameDataKeeper.S.WaypointSettings.showWaypointNames =
-            GUILayout.Toggle(GameDataKeeper.S.WaypointSettings.showWaypointNames, "Show Waypoints Names");
-        Waypoint.showWaypointsNames = GameDataKeeper.S.WaypointSettings.showWaypointNames;
-
-        GameDataKeeper.S.WaypointSettings.showWaypointBorders =
-            GUILayout.Toggle(GameDataKeeper.S.WaypointSettings.showWaypointBorders, "Show Waypoints Borders");
-        Waypoint.showWaypointBorders = GameDataKeeper.S.WaypointSettings.showWaypointBorders;
-
         
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.PropertyField(obj.FindProperty("waypointRoot"));
-        if(GUILayout.Button("New"))
-        {
-           CreateWaypointRoot("New Waypoint Root");
-        }
-        EditorGUILayout.EndHorizontal();
+        DrawToggleButtons();
         
-        GUILayout.Label("Automatic");
-        if (GUILayout.Button("Generate Bot Route"))
-        {
-            CreateWaypointRoot("Generated Waypoint Root");
-            GenerateWaypointRoute();
-            CalculateDistancesToFinish();
-            GenerateBranches();
-            CalculateAllBranchesCost();
-        }
+        DrawRootButtons(obj);
         
-        GUILayout.Label("Semi-automatic");
-        if (GUILayout.Button("Generate Waypoint Route From Prefabs"))
-        {
-            CreateWaypointRoot("Generated Waypoint Root");
-            GenerateWaypointRoute();
-        }
-        if (GUILayout.Button("Calculate Branches Cost"))
-        {
-            CalculateAllBranchesCost();
-        }
-        if (GUILayout.Button("Generate Branches"))
-        {
-            CalculateDistancesToFinish();
-            GenerateBranches();
-            CalculateAllBranchesCost();
-        }
         if (waypointRoot)
         {
-            GUILayout.Label(waypointRoot.gameObject.name, centeredStyle);
-            EditorGUILayout.BeginVertical();
-            DrawButtons();
-            EditorGUILayout.EndVertical();
+            DrawWaypointButtons();
         }
         else
         {
@@ -83,14 +41,121 @@ public class WaypointManager : EditorWindow
         obj.ApplyModifiedProperties();
     }
 
-    private void CreateWaypointRoot(string name)
+    #region Buttons
+
+    private void DrawToggleButtons()
     {
-        var newWaypointRoot = new GameObject(name);
+        EditorGUILayout.BeginVertical("box");
+        
+        GUILayout.Label("Toggles", centeredStyle);
+        
+        GameDataKeeper.S.WaypointSettings.showWaypointNames =
+            GUILayout.Toggle(GameDataKeeper.S.WaypointSettings.showWaypointNames, "Show Waypoints Names");
+        Waypoint.showWaypointsNames = GameDataKeeper.S.WaypointSettings.showWaypointNames;
+
+        GameDataKeeper.S.WaypointSettings.showWaypointBorders =
+            GUILayout.Toggle(GameDataKeeper.S.WaypointSettings.showWaypointBorders, "Show Waypoints Borders");
+        Waypoint.showWaypointBorders = GameDataKeeper.S.WaypointSettings.showWaypointBorders;
+        
+        EditorGUILayout.EndVertical();
+    }
+    
+    private void DrawRootButtons(SerializedObject obj)
+    {
+        EditorGUILayout.BeginHorizontal("box");
+        EditorGUILayout.PropertyField(obj.FindProperty("waypointRoot"));
+        if(GUILayout.Button("New"))
+        {
+            CreateWaypointRoot("New Waypoint Root");
+        }
+        EditorGUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Generate Bot Route"))
+        {
+            CreateWaypointRoot("Generated Waypoint Root");
+            GenerateWaypointRoute();
+            CalculateDistancesToFinish();
+            GenerateBranches();
+            CalculateAllBranchesCost();
+        }
+    }
+    
+    private void DrawWaypointButtons()
+    {
+        GUILayout.Label(waypointRoot.gameObject.name, centeredStyle);
+        EditorGUILayout.BeginVertical();
+
+        if (GUILayout.Button("Create New Waypoint"))
+        {
+            CreateWaypoint();
+        }
+        
+        if (GUILayout.Button("Calculate Branches Cost"))
+        {
+            CalculateAllBranchesCost();
+        }
+        if (GUILayout.Button("Clear Branches"))
+        {
+            ClearBranches();
+        }
+        if (GUILayout.Button("Generate Branches"))
+        {
+            CalculateDistancesToFinish();
+            GenerateBranches();
+            CalculateAllBranchesCost();
+            SortBranches();
+        }
+
+        if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Waypoint>())
+        {
+            EditorGUILayout.BeginVertical("box");
+            GUILayout.Label(Selection.activeGameObject.name, centeredStyle);
+            var selectedWaypoint = Selection.activeGameObject.GetComponent<Waypoint>();
+            
+            if (GUILayout.Button("Create Brunch"))
+            {
+                CreateBrunch(selectedWaypoint);
+            }
+            
+            if (GUILayout.Button("Calculate Branches Cost"))
+            {
+                CalculateCurrentWaypointBranchesCost(selectedWaypoint);
+            }
+            
+            if (GUILayout.Button("Create Waypoint Before"))
+            {
+                CreateWaypointBefore(selectedWaypoint);
+            }
+
+            if (GUILayout.Button("Create Waypoint After"))
+            {
+                CreateWaypointAfter(selectedWaypoint);
+            }
+            
+            if (GUILayout.Button("Remove Waypoint"))
+            {
+                RemoveWaypoint(selectedWaypoint);
+            }
+
+            EditorGUILayout.EndVertical();
+        }
+        
+        EditorGUILayout.EndVertical();
+    }
+
+    #endregion
+
+
+    #region RootMethods
+
+    private void CreateWaypointRoot(string rootName)
+    {
+        var newWaypointRoot = new GameObject(rootName);
         newWaypointRoot.tag = "WaypointRoot";
         Selection.activeObject = newWaypointRoot;
         waypointRoot =  newWaypointRoot.transform;
     }
-
+    
     private void GenerateWaypointRoute()
     {
         var startPlatform = GameObject.FindGameObjectWithTag("Start");
@@ -101,8 +166,13 @@ public class WaypointManager : EditorWindow
         }
         
         var waypoints = FindObjectsOfType<Waypoint>().ToList();
+        if(waypoints.Count == 0)
+        {
+            Debug.LogError("There is no Waypoints");
+            return;
+        }
+        
         var lastWaypoints = new List<Waypoint>();
-
         foreach (var waypoint in waypoints)
         {
             if (!waypoint.nextWaypoint && waypoint.branches.Count == 0)
@@ -136,21 +206,19 @@ public class WaypointManager : EditorWindow
         }
         
         waypoints = FindObjectsOfType<Waypoint>().ToList();
-        Debug.Log(waypoints.Count);
         var newWaypoints = new List<Waypoint>();
         
         foreach (var waypoint in waypoints)
         {
             if (!waypoint.gameObject.activeInHierarchy)
                 continue;
-            var newWaypointGo = CreateWaypointGO();
+            var newWaypointGo = CreateWaypointGo();
             var newWaypoint = newWaypointGo.GetComponent<Waypoint>();
             newWaypoints.Add(newWaypoint);
         }
         
         for(var i = 0; i < waypoints.Count; i++)
         {
-        
             CopyTransform(newWaypoints[i].transform, waypoints[i].transform);
             if (waypoints[i].nextWaypoint)
             {
@@ -160,6 +228,7 @@ public class WaypointManager : EditorWindow
                 else
                     newWaypoints[i].nextWaypoint = newWaypoints[index];
             }
+            
             if (waypoints[i].previousWaypoint)
             {
                 var index = waypoints.IndexOf(waypoints[i].previousWaypoint);
@@ -184,63 +253,23 @@ public class WaypointManager : EditorWindow
         
         foreach (var waypoint in waypoints)
         {
+            waypoint.gameObject.SetActive(false);
             waypoint.transform.parent.gameObject.SetActive(false);
         }
     }
 
-    private void CopyTransform(Transform to, Transform from)
+    #endregion
+
+    #region WaypointsMethods
+
+     private void CopyTransform(Transform to, Transform from)
     {
         to.position = from.position;
         to.rotation = from.rotation;
     }
+    
 
-    private void DrawButtons()
-    {
-
-        if (GUILayout.Button("Create New Waypoint"))
-        {
-            CreateWaypoint();
-        }
-
-        if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Waypoint>())
-        {
-            EditorGUILayout.BeginVertical("box");
-            
-            
-            GUILayout.Label(Selection.activeGameObject.name, centeredStyle);
-            
-            var selectedWaypoint = Selection.activeGameObject.GetComponent<Waypoint>();
-            
-            if (GUILayout.Button("Create Brunch"))
-            {
-                CreateBrunch(selectedWaypoint);
-            }
-            
-            if (GUILayout.Button("Calculate Branches Cost"))
-            {
-                CalculateBranchesCost(selectedWaypoint);
-            }
-            
-            if (GUILayout.Button("Create Waypoint Before"))
-            {
-                CreateWaypointBefore(selectedWaypoint);
-            }
-
-            if (GUILayout.Button("Create Waypoint After"))
-            {
-                CreateWaypointAfter(selectedWaypoint);
-            }
-            
-            if (GUILayout.Button("Remove Waypoint"))
-            {
-                RemoveWaypoint(selectedWaypoint);
-            }
-
-            EditorGUILayout.EndVertical();
-        }
-    }
-
-    private GameObject CreateWaypointGO(string prefixName = "")
+    private GameObject CreateWaypointGo(string prefixName = "")
     {
         var waypointGO = new GameObject(prefixName + "Waypoint " + waypointRoot.childCount,typeof(Waypoint));
         waypointGO.transform.SetParent(waypointRoot, false);
@@ -256,7 +285,7 @@ public class WaypointManager : EditorWindow
 
     private Waypoint CreateWaypoint()
     {
-        var waypointGO = CreateWaypointGO();
+        var waypointGO = CreateWaypointGo();
         
         var waypointsCount = waypointRoot.childCount;
         var waypoint = waypointGO.GetComponent<Waypoint>();
@@ -274,7 +303,7 @@ public class WaypointManager : EditorWindow
 
     private Waypoint CreateWaypointBefore(Waypoint selectedWaypoont)
     {
-        var waypointGO = CreateWaypointGO();
+        var waypointGO = CreateWaypointGo();
         SetWaypointPos(selectedWaypoont.transform, waypointGO.transform);
         var newWaypoint = waypointGO.GetComponent<Waypoint>();
         
@@ -293,7 +322,7 @@ public class WaypointManager : EditorWindow
 
     private Waypoint CreateWaypointAfter(Waypoint selectedWaypoont)
     {
-        var waypointGO = CreateWaypointGO();
+        var waypointGO = CreateWaypointGo();
         SetWaypointPos(selectedWaypoont.transform, waypointGO.transform);
         var newWaypoint = waypointGO.GetComponent<Waypoint>();
 
@@ -337,7 +366,7 @@ public class WaypointManager : EditorWindow
 
     private Waypoint CreateBrunch(Waypoint selectedWaypoont)
     {
-        var waypointGO = CreateWaypointGO("<BRANCH>");
+        var waypointGO = CreateWaypointGo("<BRANCH>");
         var waypoint = waypointGO.GetComponent<Waypoint>();
         selectedWaypoont.branches.Add(new Branch{waypoint = waypoint, cost = 0});
         SetWaypointPos(selectedWaypoont.transform,waypointGO.transform);
@@ -346,7 +375,7 @@ public class WaypointManager : EditorWindow
         return waypoint;
     }
 
-    private void CalculateBranchesCost(Waypoint selectedWaypoont)
+    private void CalculateCurrentWaypointBranchesCost(Waypoint selectedWaypoont)
     {
         var planksPerMeter = GameDataKeeper.S.GameSettings.PlanksPerMeter;
         var selectedPos = selectedWaypoont.transform.position;
@@ -371,7 +400,7 @@ public class WaypointManager : EditorWindow
 
         foreach (var waypoint in waypointsWithBranches)
         {
-            CalculateBranchesCost(waypoint);
+            CalculateCurrentWaypointBranchesCost(waypoint);
         }
     }
 
@@ -435,17 +464,14 @@ public class WaypointManager : EditorWindow
         }
 
         Debug.Log($"Cant calculate distance in {waypoint}");
-        // waypoint.distanceToFinish =
-        //     CalculateDistance(waypoint.transform.position, FindObjectOfType<Finish>().transform.position);
         return waypoint.distanceToFinish;
     }
 
     private void GenerateBranches()
     {
-        var waypointSettings = GameDataKeeper.S.WaypointSettings;
-        var maxCheckDistance = waypointSettings.MaxBranchCheckDistance;
-        var minCheckDistance = waypointSettings.MinBranchCheckDistance;   
-        var minCoeff = waypointSettings.MinBranchDistanceCoefficient;
+        var maxCheckDistance = GameDataKeeper.S.WaypointSettings.MaxBranchCheckDistance;
+        var minCheckDistance = GameDataKeeper.S.WaypointSettings.MinBranchCheckDistance;   
+        var minCoeff = GameDataKeeper.S.WaypointSettings.MinBranchDistanceCoefficient;
 
         var waypoints = waypointRoot.GetComponentsInChildren<Waypoint>();
 
@@ -464,19 +490,44 @@ public class WaypointManager : EditorWindow
                 var distanceToFinishDifference = waypoint.distanceToFinish - checkWaypoint.distanceToFinish;
                 if(distanceToFinishDifference < 0)
                     continue;
-                
-                //Debug.Log($"{waypoint}, {checkWaypoint}, {distanceToFinishDifference}");
+
                 var coeff = distanceToFinishDifference / sqrDistance;
 
                 if (coeff >= minCoeff)
                 {
-                    //Debug.Log($"{waypoint}, {checkWaypoint}");
-                    waypoint.branches.Add(new Branch(){waypoint = checkWaypoint});
+                    waypoint.branches.Add(new Branch(){waypoint = checkWaypoint, coefficient = coeff});
                 }
                   
             }
         }
-        
     }
+
+    private void ClearBranches()
+    {
+        var waypoints = waypointRoot.GetComponentsInChildren<Waypoint>();
+        foreach (var waypoint in waypoints)
+        {
+            if (waypoint.branches.Count > 0)
+            {
+                waypoint.branches = new List<Branch>();
+            }
+        }
+    }
+
+    private void SortBranches()
+    {
+        var waypoints = waypointRoot.GetComponentsInChildren<Waypoint>();
+        foreach (var waypoint in waypoints)
+        {
+            if (waypoint.branches.Count > 0)
+            {
+                waypoint.branches = waypoint.branches.OrderByDescending(branch => branch.coefficient).ToList();
+            }
+        }
+    }
+
+    #endregion
+
+   
     
 }

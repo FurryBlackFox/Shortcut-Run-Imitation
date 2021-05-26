@@ -3,7 +3,9 @@ using UnityEditor;
 using System.IO;
 using System;
 using System.Collections.Generic;
-
+/// <summary>
+/// test feature
+/// </summary>
 public class BakeTextureWindow : EditorWindow {
 
     private Material ImageMaterial;
@@ -20,7 +22,7 @@ public class BakeTextureWindow : EditorWindow {
     private bool hasFilePath2;
 
 
-    [MenuItem ("Tools/Bake material to texture")]
+    [MenuItem ("Tools/Bake material to texture (TEST FEATURE)")]
     static void OpenWindow() {
         //create window
         BakeTextureWindow window = EditorWindow.GetWindow<BakeTextureWindow>();

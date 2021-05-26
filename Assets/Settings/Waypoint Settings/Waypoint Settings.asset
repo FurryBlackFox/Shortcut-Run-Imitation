@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Waypoint Settings
   m_EditorClassIdentifier: 
   showWaypointBorders: 1
-  showWaypointNames: 1
+  showWaypointNames: 0
   minBranchCheckDistance: 5
   maxBranchCheckDistance: 40
-  minBranchDistanceCoefficient: 1.5
+  minBranchDistanceCoefficient: 1.75

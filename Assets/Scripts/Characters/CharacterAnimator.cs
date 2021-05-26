@@ -68,7 +68,7 @@ public class CharacterAnimator : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool(idInAir, !character.CharacterController.isGrounded);
+        animator.SetBool(idInAir, !character.IsGrounded());
     }
 
     private void SetMovement(float speed)

@@ -16,10 +16,10 @@ MonoBehaviour:
   minFinishSqrDistance: 10
   angleLerp: 1
   navigationAngleMult: 1
-  targetLerpMult: 1.25
+  useRandomBranches: 1
   avoidEnabled: 1
   raysCount: 7
-  raysOffset: 0.3
+  raysVerticalOffset: 0.3
   anglePerRay: 7.5
   rayDistance: 10
   centralRayDistance: 12.5

@@ -296,5 +296,10 @@ public class CharacterMovementController : MonoBehaviour
         transform.position = pos;
     }
 
+    public bool IsGrounded()
+    {
+        return characterController.isGrounded;
+    }
+
     #endregion
 }

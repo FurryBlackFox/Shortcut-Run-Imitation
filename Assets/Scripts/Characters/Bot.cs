@@ -39,7 +39,6 @@ public class Bot : Character
         
         botSettings = GameDataKeeper.S.BotSettings;
         
-        
     }
 
 
@@ -89,10 +88,11 @@ public class Bot : Character
    
     #region Other
 
+ 
     private void GetRandomCharacterData()
     {
         characterName = RandomBotData.S.GetRandomNickname();
-        UICharacterNameText.SetText(characterName);
+        uiCharacterNameText.SetText(characterName);
         RandomBotData.S.GetRandomMaterials(out botPlanksController.planksMaterialOpaque, 
             out botPlanksController.planksMaterialTransparent);
         botPlanksController.currentPlanksMaterial = botPlanksController.planksMaterialOpaque;

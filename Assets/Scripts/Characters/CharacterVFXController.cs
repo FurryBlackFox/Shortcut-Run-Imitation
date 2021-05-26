@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Character))]
 public class CharacterVFXController : MonoBehaviour
 {
-    private static Transform nonChildEffectsRoot;
+    protected static Transform nonChildEffectsRoot;
     
     [SerializeField] private ParticleSystem emergenceEffect = default;
     [SerializeField] private ParticleSystem waterSplashEffect = default;
@@ -13,28 +13,16 @@ public class CharacterVFXController : MonoBehaviour
     [SerializeField] private float waterPosY = -1f;
     [SerializeField] private ParticleSystem speedBoostSmokeEffect = default;
     [SerializeField] private ParticleSystem speedBoostRingsEffect = default;
-    [SerializeField] private float speedBoostThreshold = 1.2f;
     [SerializeField] private ParticleSystem firstPositionEffect = default;
     [SerializeField] private ParticleSystem crownSmokeEffect = default;
+    [SerializeField] protected float speedBoostThreshold = 1.2f;
     [SerializeField] protected GameObject firstPlaceCrownGO = default;
     
     
-    private Character character;
+    protected Character character;
     
-    private void Awake()
+    protected virtual void Awake()
     {
-#if UNITY_EDITOR
-
-        CustomTools.IsNull(emergenceEffect, nameof(emergenceEffect), name);
-        CustomTools.IsNull(waterSplashEffect, nameof(waterSplashEffect), name);
-        CustomTools.IsNull(waterRipplesEffect, nameof(waterRipplesEffect), name);
-        CustomTools.IsNull(speedBoostSmokeEffect, nameof(speedBoostSmokeEffect), name);
-        CustomTools.IsNull(speedBoostRingsEffect, nameof(speedBoostRingsEffect), name);
-        CustomTools.IsNull(firstPositionEffect, nameof(firstPositionEffect), name);
-        CustomTools.IsNull(crownSmokeEffect, nameof(crownSmokeEffect), name);
-        CustomTools.IsNull(firstPlaceCrownGO, nameof(firstPlaceCrownGO), name); 
-
-#endif
         character = GetComponent<Character>();
 
         if (!nonChildEffectsRoot)
@@ -48,7 +36,7 @@ public class CharacterVFXController : MonoBehaviour
 
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         character.OnEmerge += OnEmergeHandler;
         character.OnDrowning += OnDrawningHandler;
@@ -57,7 +45,7 @@ public class CharacterVFXController : MonoBehaviour
         CharacterPositionChecker.OnFirstPositionLost += OnFirstPositionLostHandler;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         character.OnEmerge -= OnEmergeHandler;
         character.OnDrowning -= OnDrawningHandler;
@@ -82,7 +70,7 @@ public class CharacterVFXController : MonoBehaviour
         waterSplashEffect.Play();
     }
 
-    private void OnSpeedChangeHandler(float speedMult)
+    protected virtual void OnSpeedChangeHandler(float speedMult)
     {
         if (speedMult > speedBoostThreshold)
         {
@@ -90,11 +78,11 @@ public class CharacterVFXController : MonoBehaviour
             speedBoostRingsEffect.Play();
         }
 
-        else
-        {
-            speedBoostSmokeEffect.Stop();
-            speedBoostRingsEffect.Stop();
-        }
+        // else
+        // {
+        //     speedBoostSmokeEffect.Stop();
+        //     speedBoostRingsEffect.Stop();
+        // }
     }
 
     private void OnFirstPositionObtainedHandler(Character firstCharacter)

@@ -63,7 +63,7 @@ public class Player : Character
         base.Start();
         
         characterName = playerData.PlayerName;
-        UICharacterNameText.SetText(characterName);
+        uiCharacterNameText.SetText(characterName);
 
     }
 

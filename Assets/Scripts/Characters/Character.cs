@@ -17,14 +17,12 @@ public class Character : MonoBehaviour
     
     
     [Header("Character Canvas")] 
-    [SerializeField] protected TextMeshProUGUI UICharacterNameText = default;
+    [SerializeField] protected TextMeshProUGUI uiCharacterNameText = default;
 
     protected string characterName;
     public string CharacterName => characterName;
 
 
-    protected CharacterController characterController;
-    public CharacterController CharacterController => characterController;
     protected CharacterPlanksController characterPlanksController;
     public CharacterPlanksController CharacterPlanksController => characterPlanksController;
     protected CharacterMovementController characterMovementController;
@@ -36,7 +34,6 @@ public class Character : MonoBehaviour
     protected virtual void Awake()
     {
         gameSettings = GameDataKeeper.S.GameSettings;
-        characterController = GetComponent<CharacterController>();
         characterMovementController = GetComponent<CharacterMovementController>();
         characterPlanksController = GetComponent<CharacterPlanksController>();
     }
@@ -68,39 +65,23 @@ public class Character : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Plank"))
+        switch (other.tag)
         {
-            var triggeredPlank = other.GetComponentInParent<TriggerPlank>();
-            triggeredPlank.Trigger();
-            characterPlanksController.AddPlank();
-        }
-        else if (other.CompareTag("Finish"))
-        {
-            
-            var finish = other.GetComponent<Finish>();
-            finish.RegisterCharacter(this);
-            var position = finish.GetFinishingResult(this);
-            characterMovementController.SetPosition(finish.GetFinishPosition(position)); //TODO: smooth movement
-            characterMovementController.OnFinishHandler(finish.GetCameraPosition());
-            characterPlanksController.HidePlanks();
-            OnFinish?.Invoke(position);
-;        }
-        else if (other.CompareTag("Water"))
-        {
-            OnDrowning?.Invoke();
-        }
-        else if (other.CompareTag("Pendulum"))
-        {
-            var position = transform.position;
-            var pendulumPos = other.ClosestPoint(position);
-            var direction = position - pendulumPos;
-            direction.y = 0;
-            direction.Normalize();
-            direction = Vector3.Lerp(direction, Vector3.up, gameSettings.PendulumVerticalModifier);
-            characterMovementController.AddForce(direction * gameSettings.PendulumCollisionForce);
+            case "Plank":
+                OnCollisionWithPlankHandler(other);
+                break;
+            case "Finish":
+                OnCollisionWithFinishHandler(other);
+                break;
+            case "Water":
+                OnDrowning?.Invoke();
+                break;
+            case "Pendulum":
+                OnCollisionWithPendulumHandler(other);
+                break;
         }
     }
-
+    
     protected void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("JumpPoint"))
@@ -109,6 +90,12 @@ public class Character : MonoBehaviour
             characterMovementController.Jump(height);
         }
     }
+
+    protected void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("collision");
+    }
+
 
     protected virtual void OnDrawGizmos()
     {
@@ -121,14 +108,56 @@ public class Character : MonoBehaviour
         characterMovementController.Jump(height);
     }
 
+    private void OnSpeedChangeHandler(float value)
+    {
+        characterMovementController.currentSpeedMult = value;
+    }
+    
+    private void OnCollisionWithPlankHandler(Collider plankCollider)
+    {
+        var triggeredPlank = plankCollider.GetComponentInParent<TriggerPlank>();
+        triggeredPlank.Trigger();
+        characterPlanksController.AddPlank();
+    }
+
+    private void OnCollisionWithFinishHandler(Collider finishCollider)
+    {
+        var finish = finishCollider.GetComponent<Finish>();
+        finish.RegisterCharacter(this);
+        var position = finish.GetFinishingResult(this);
+        characterMovementController.SetPosition(finish.GetFinishPosition(position)); //TODO: smooth movement
+        characterMovementController.OnFinishHandler(finish.GetCameraPosition());
+        characterPlanksController.HidePlanks();
+        OnFinish?.Invoke(position);
+    }
+
+    private void OnCollisionWithPendulumHandler(Collider pendulumCollider)
+    {
+        var position = transform.position;
+        var pendulumPos = pendulumCollider.ClosestPoint(position);
+        var direction = position - pendulumPos;
+        direction.y = 0;
+        direction.Normalize();
+        direction = Vector3.Lerp(direction, Vector3.up, gameSettings.PendulumVerticalModifier);
+        characterMovementController.AddForce(direction * gameSettings.PendulumCollisionForce);
+    }
+
+    
+
+    #region Public
+
+    public bool IsGrounded()
+    {
+        return characterMovementController.IsGrounded();
+    }
+    
+    
     public void SetPosition(Vector3 position)
     {
         characterMovementController.SetPosition(position);
     }
 
-    private void OnSpeedChangeHandler(float value)
-    {
-        characterMovementController.currentSpeedMult = value;
-    }
+
+    #endregion
     
 }
