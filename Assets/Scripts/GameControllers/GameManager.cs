@@ -17,10 +17,11 @@ public class GameManager : MonoBehaviour
     [SerializeField, Min(-1)] private int targetFramerate = 0;
     [SerializeField] private bool enableMobileVSync = true;
 
-    [SerializeField, Range(0f, 5f)] private float restartDelay = 2f;
+
     
     private Player player;
     private PlayerData playerData;
+    private LevelLoader levelLoader;
     private void Awake()
     {
         isGameEnded = false;
@@ -31,7 +32,8 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         player = GameDataKeeper.S.Player;
-        player.OnDrowning += GameOver;
+        levelLoader = GameDataKeeper.S.LevelLoader;
+        player.OnDrowning += OnGameOver;
         
         Finish.OnEveryoneFinished += RaceOver;
         UIButtonsEvents.OnPlay += OnStartHandler;
@@ -40,11 +42,12 @@ public class GameManager : MonoBehaviour
         UIButtonsEvents.OnClaimPoints += OnClaimPointsHandler;
         UIButtonsEvents.OnSettings += OnSettingsHandler;
         UIButtonsEvents.OnHome += OnHomeHandler;
+        UIButtonsEvents.OnShop += OnShopHandler;
     }
 
     private void OnDisable()
     {
-        player.OnDrowning -= GameOver;
+        player.OnDrowning -= OnGameOver;
         Finish.OnEveryoneFinished -= RaceOver;
         UIButtonsEvents.OnPlay -= OnStartHandler;
         UIButtonsEvents.OnRestart -= OnRestartHandler;
@@ -52,6 +55,7 @@ public class GameManager : MonoBehaviour
         UIButtonsEvents.OnClaimPoints -= OnClaimPointsHandler;
         UIButtonsEvents.OnSettings -= OnSettingsHandler;
         UIButtonsEvents.OnHome -= OnHomeHandler;
+        UIButtonsEvents.OnShop -= OnShopHandler;
     }
     
     private void Start()
@@ -81,12 +85,13 @@ public class GameManager : MonoBehaviour
         OnGameStart?.Invoke();
     }
 
-    private void OnClaimPointsHandler(int points, bool isBonus)
+    private void OnClaimPointsHandler(int points)
     {
         player.AddCoins(points);
         OnPlayerCoinsChanged?.Invoke(playerData.CoinsCount);
         SaveSystem.SavePlayerSettings(playerData);
-        LoadNextLevel();
+        
+        levelLoader.LoadNextLevel();
     }
 
     private void OnSettingsHandler(bool value)
@@ -96,42 +101,26 @@ public class GameManager : MonoBehaviour
 
     private void OnHomeHandler()
     {
-        Time.timeScale = 1f;
-        StartCoroutine(RestartLevel());
+        levelLoader.RestartLevel();
     }
 
     private void OnHomePopUpHandler(bool value)
     {
         Time.timeScale = value ? 0f : 1f;
     }
+
+    private void OnShopHandler()
+    {
+        levelLoader.LoadShopLevel();
+    }
     
     private void OnRestartHandler()
     {
-        StartCoroutine(RestartLevel());
+
+        levelLoader.RestartLevel();
     }
 
-    private void LoadNextLevel()
-    {
-        var levelsList = GameDataKeeper.S.LevelSequence.LevelsList;
-        
-        playerData.currentLevel++;
-        if (playerData.currentLevel >= levelsList.Count)
-            playerData.currentLevel = 0;
-        
-        SaveSystem.SavePlayerSettings(playerData);
-        
-        SceneManager.LoadSceneAsync(levelsList[playerData.currentLevel]);
-    }
-
-    private IEnumerator RestartLevel()
-    {
-        var index = SceneManager.GetActiveScene().buildIndex;
-        if(restartDelay > 0f)
-            yield return new WaitForSeconds(restartDelay);
-        SceneManager.LoadSceneAsync(index);
-    }
-    
-    private static void GameOver()
+    private static void OnGameOver()
     {
         OnPlayerDeath?.Invoke();
         isGameEnded = true;

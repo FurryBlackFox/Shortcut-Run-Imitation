@@ -5,14 +5,60 @@
     <e p="C:\Users\User\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_Shortcut-Run-Imitation.1957128693.00" t="ExcludeRecursive" />
     <e p="D:\Git\Shortcut Run\Shortcut-Run-Imitation" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Import" t="Include">
-          <e p="Scripts" t="Include">
-            <e p="SRPBatcherProfiler.cs" t="Include" />
-          </e>
+          <e p="SRPBatcherProfiler.cs" t="Include" />
           <e p="Text Files" t="Include">
             <e p="NIcknames.txt" t="Include" />
+          </e>
+          <e p="TextMesh Pro" t="Include">
+            <e p="Fonts" t="Include">
+              <e p="LiberationSans - OFL.txt" t="Include" />
+            </e>
+            <e p="Resources" t="Include">
+              <e p="LineBreaking Following Characters.txt" t="Include" />
+              <e p="LineBreaking Leading Characters.txt" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+              <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+              <e p="TMP_Bitmap.shader" t="Include" />
+              <e p="TMP_SDF Overlay.shader" t="Include" />
+              <e p="TMP_SDF SSD.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile SSD.shader" t="Include" />
+              <e p="TMP_SDF-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface.shader" t="Include" />
+              <e p="TMP_SDF.shader" t="Include" />
+              <e p="TMP_Sprite.shader" t="Include" />
+              <e p="TMPro.cginc" t="Include" />
+              <e p="TMPro_Mobile.cginc" t="Include" />
+              <e p="TMPro_Properties.cginc" t="Include" />
+              <e p="TMPro_Surface.cginc" t="Include" />
+            </e>
+            <e p="Sprites" t="Include">
+              <e p="EmojiOne Attribution.txt" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Plugins" t="Include">
+          <e p="Demigiant" t="Include">
+            <e p="DOTween" t="Include">
+              <e p="Modules" t="Include">
+                <e p="DOTweenModuleAudio.cs" t="Include" />
+                <e p="DOTweenModulePhysics.cs" t="Include" />
+                <e p="DOTweenModulePhysics2D.cs" t="Include" />
+                <e p="DOTweenModuleSprite.cs" t="Include" />
+                <e p="DOTweenModuleUI.cs" t="Include" />
+                <e p="DOTweenModuleUnityVersion.cs" t="Include" />
+                <e p="DOTweenModuleUtils.cs" t="Include" />
+              </e>
+              <e p="ReadMe.txt" t="Include" />
+            </e>
           </e>
         </e>
         <e p="Scripts" t="Include">
@@ -26,11 +72,14 @@
             <e p="CharacterAnimator.cs" t="Include" />
             <e p="CharacterMovementController.cs" t="Include" />
             <e p="CharacterPlanksController.cs" t="Include" />
+            <e p="CharacterSkin.cs" t="Include" />
+            <e p="CharacterSkinController.cs" t="Include" />
             <e p="CharacterVFXController.cs" t="Include" />
             <e p="Player.cs" t="Include" />
             <e p="PlayerInput.cs" t="Include" />
             <e p="PlayerMovementController.cs" t="Include" />
             <e p="PlayerPlanksController.cs" t="Include" />
+            <e p="PlayerSkinController.cs" t="Include" />
             <e p="PlayerVFXController.cs" t="Include" />
             <e p="RandomBotData.cs" t="Include" />
           </e>
@@ -60,16 +109,22 @@
             <e p="Waypoint.cs" t="Include" />
           </e>
           <e p="GameControllers" t="Include">
+            <e p="ADS" t="Include">
+              <e p="AdsManager.cs" t="Include" />
+            </e>
             <e p="BotSpawner.cs" t="Include" />
             <e p="CharacterDisposer.cs" t="Include" />
             <e p="GameDataKeeper.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="HubLevelManager.cs" t="Include" />
+            <e p="LevelLoader.cs" t="Include" />
             <e p="SaveSystem.cs" t="Include" />
             <e p="VictoryPointsCounter.cs" t="Include" />
           </e>
           <e p="Other" t="Include">
             <e p="CustomTools.cs" t="Include" />
+            <e p="UnityEventInt.cs" t="Include" />
+            <e p="UnityEventIntBool.cs" t="Include" />
           </e>
           <e p="ScriptableObjects" t="Include">
             <e p="BotData.cs" t="Include" />
@@ -77,16 +132,30 @@
             <e p="GameSettings.cs" t="Include" />
             <e p="LevelSequence.cs" t="Include" />
             <e p="PlayerData.cs" t="Include" />
+            <e p="ShopItemsList.cs" t="Include" />
             <e p="WaypointSettings.cs" t="Include" />
+          </e>
+          <e p="Shop" t="Include">
+            <e p="ShopContentController.cs" t="Include" />
+            <e p="ShopController.cs" t="Include" />
+            <e p="ShopItem.cs" t="Include" />
+            <e p="ShopSkinsRepresentator.cs" t="Include" />
+            <e p="UIShopItemButton.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
             <e p="CharacterCanvas.cs" t="Include" />
+            <e p="ScreenDimmer.cs" t="Include" />
+            <e p="Tab.cs" t="Include" />
+            <e p="TabGroup.cs" t="Include" />
             <e p="UIButtonsEvents.cs" t="Include" />
+            <e p="UIButtonTween.cs" t="Include" />
             <e p="UICharactersResultPointsController.cs" t="Include" />
             <e p="UIClaimPointsButton.cs" t="Include" />
             <e p="UICoinsDisplayer.cs" t="Include" />
             <e p="UIFpsCounter.cs" t="Include" />
             <e p="UIOnCharacterReachedFinish.cs" t="Include" />
+            <e p="UIPanelEmergenceTween.cs" t="Include" />
+            <e p="UIPanelTween.cs" t="Include" />
             <e p="UIPlankCounter.cs" t="Include" />
             <e p="UIPlayerPositionUpdater.cs" t="Include" />
             <e p="UIResultPanel.cs" t="Include" />
@@ -97,37 +166,6 @@
         <e p="Settings" t="Include">
           <e p="Input" t="Include">
             <e p="PlayerInputController.cs" t="Include" />
-          </e>
-        </e>
-        <e p="TextMesh Pro" t="Include">
-          <e p="Fonts" t="Include">
-            <e p="LiberationSans - OFL.txt" t="Include" />
-          </e>
-          <e p="Resources" t="Include">
-            <e p="LineBreaking Following Characters.txt" t="Include" />
-            <e p="LineBreaking Leading Characters.txt" t="Include" />
-          </e>
-          <e p="Shaders" t="Include">
-            <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
-            <e p="TMP_Bitmap-Mobile.shader" t="Include" />
-            <e p="TMP_Bitmap.shader" t="Include" />
-            <e p="TMP_SDF Overlay.shader" t="Include" />
-            <e p="TMP_SDF SSD.shader" t="Include" />
-            <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
-            <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
-            <e p="TMP_SDF-Mobile SSD.shader" t="Include" />
-            <e p="TMP_SDF-Mobile.shader" t="Include" />
-            <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
-            <e p="TMP_SDF-Surface.shader" t="Include" />
-            <e p="TMP_SDF.shader" t="Include" />
-            <e p="TMP_Sprite.shader" t="Include" />
-            <e p="TMPro.cginc" t="Include" />
-            <e p="TMPro_Mobile.cginc" t="Include" />
-            <e p="TMPro_Properties.cginc" t="Include" />
-            <e p="TMPro_Surface.cginc" t="Include" />
-          </e>
-          <e p="Sprites" t="Include">
-            <e p="EmojiOne Attribution.txt" t="Include" />
           </e>
         </e>
       </e>

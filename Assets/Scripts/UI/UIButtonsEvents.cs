@@ -8,18 +8,19 @@ public class UIButtonsEvents : MonoBehaviour
     public static event Action OnRestart;
     public static event Action<bool> OnHomePopUp;
     public static event Action OnPlay;
-    public static event Action<int, bool> OnClaimPoints;
+    public static event Action<int> OnClaimPoints;
     public static event Action<bool> OnSettings;
     public static event Action OnHome;
+    public static event Action OnShop;
 
     private void OnEnable()
     {
-        UIClaimPointsButton.OnClaimPoints += OnClaimPointsHandler;
+        //UIClaimPointsButton.OnClaimPoints += OnClaimPointsHandler;
     }
 
     private void OnDisable()
     {
-        UIClaimPointsButton.OnClaimPoints -= OnClaimPointsHandler;
+        //UIClaimPointsButton.OnClaimPoints -= OnClaimPointsHandler;
     }
 
     public void OnRetryButton()
@@ -56,11 +57,29 @@ public class UIButtonsEvents : MonoBehaviour
     {
         OnPlay?.Invoke();
     }
-    
-    
 
-    private void OnClaimPointsHandler(int points, bool isBonus)
+    public void OnShopButton()
     {
-        OnClaimPoints?.Invoke(points, isBonus);
+        OnShop?.Invoke();
+    }
+    
+    private int cashedRewardPoints = 0;
+    
+    public void OnClaimPointsButton(int points, bool hasBonus)
+    {
+        if (hasBonus)
+        {
+            GameDataKeeper.S.AdsManager.ShowRewardedAds();
+            cashedRewardPoints = points;
+            GameDataKeeper.S.AdsManager.OnAdsFinished += OnAdsFinishedHandler;
+        }
+        else
+            OnClaimPoints?.Invoke(points);
+    }
+    
+    private void OnAdsFinishedHandler()
+    {
+        GameDataKeeper.S.AdsManager.OnAdsFinished -= OnAdsFinishedHandler;
+        OnClaimPoints?.Invoke(cashedRewardPoints);
     }
 }

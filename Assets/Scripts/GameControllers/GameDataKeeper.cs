@@ -16,8 +16,8 @@ public class GameDataKeeper : MonoBehaviour
     [SerializeField] private GameSettings gameSettings = default;
     public GameSettings GameSettings => gameSettings;
 
-    [SerializeField] private LevelSequence levelSequence = default;
-    public LevelSequence LevelSequence => levelSequence;
+    [SerializeField] private LevelLoader levelLoader = default;
+    public LevelLoader LevelLoader => levelLoader;
 
     [SerializeField] private BotSettings botSettings = default;
     public BotSettings BotSettings => botSettings;
@@ -36,6 +36,8 @@ public class GameDataKeeper : MonoBehaviour
     public PlayerData PlayerData { get; private set; }
     
     public PlankObjectPool PlankObjectPool { get; private set; }
+    
+    public AdsManager AdsManager { get; private set; }
 
 
     private void OnEnable() //Cause executes in editor too 
@@ -58,6 +60,7 @@ public class GameDataKeeper : MonoBehaviour
         characters.AddRange(FindObjectsOfType<Bot>());
         CinemachineBrain = FindObjectOfType<CinemachineBrain>();
         PlankObjectPool = FindObjectOfType<PlankObjectPool>();
+        AdsManager = FindObjectOfType<AdsManager>();
         PlayerData = Player.PlayerData;
     }
 

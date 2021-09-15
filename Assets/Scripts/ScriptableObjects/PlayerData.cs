@@ -9,6 +9,7 @@ public class PlayerData : ScriptableObject
     [SerializeField] internal string playerName = "Player";
     [SerializeField] internal int currentLevel = 0;
     
+    [SerializeField] internal CharacterSkin currentSkin;
     // TODO: finish after implementing shop
     
     public Material PlankMaterialOpaque => plankMaterialOpaque;
@@ -30,5 +31,11 @@ public class PlayerData : ScriptableObject
     {
         get => currentLevel;
         set => currentLevel = value;
+    }
+
+    public CharacterSkin CurrentSkin
+    {
+        get => currentSkin;
+        set => currentSkin = value;
     }
 }

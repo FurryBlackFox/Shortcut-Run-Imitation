@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class UIScreensController : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup gameOverScreen = default;
-    [SerializeField] private CanvasGroup finishScreen = default;
-    [SerializeField] private CanvasGroup playtimeScreen = default;
-    [SerializeField] private CanvasGroup menuScreen = default;
-    [SerializeField] private CanvasGroup settingsScreen = default;
-    [SerializeField] private CanvasGroup onHomeScreen = default;
+    [SerializeField] private Canvas gameOverScreen = default;
+    [SerializeField] private Canvas finishScreen = default;
+    [SerializeField] private Canvas playtimeScreen = default;
+    [SerializeField] private Canvas menuScreen = default;
+    [SerializeField] private Canvas settingsScreen = default;
+    [SerializeField] private Canvas onHomeScreen = default;
+    [SerializeField] private Canvas BlackScreen = default;
 
     private void Awake()
     {
@@ -23,19 +24,22 @@ public class UIScreensController : MonoBehaviour
         CustomTools.IsNull(menuScreen, nameof(menuScreen), name);
         CustomTools.IsNull(settingsScreen, nameof(settingsScreen), name);
         CustomTools.IsNull(onHomeScreen, nameof(onHomeScreen), name);
+        CustomTools.IsNull(BlackScreen, nameof(BlackScreen), name);
         
         #endif
+        
+       
     }
 
     private void Start()
     {
-        gameOverScreen.EnableCanvasGroup(false);
-        finishScreen.EnableCanvasGroup(false);
-        playtimeScreen.EnableCanvasGroup(false);
-        settingsScreen.EnableCanvasGroup(false);
-        onHomeScreen.EnableCanvasGroup(false);
-        menuScreen.EnableCanvasGroup(true);
-
+        gameOverScreen.enabled = false;
+        finishScreen.enabled = false;
+        playtimeScreen.enabled = false;
+        settingsScreen.enabled = false;
+        onHomeScreen.enabled = false;
+        menuScreen.enabled = true;
+        BlackScreen.enabled = true;
     }
 
     private void OnEnable()
@@ -59,28 +63,28 @@ public class UIScreensController : MonoBehaviour
     
     private void OnSettingsHandler(bool value)
     {
-        settingsScreen.EnableCanvasGroup(value);
+        settingsScreen.enabled = value;
     }
 
     private void OnHomePopUpHandler(bool value)
     {
-        onHomeScreen.EnableCanvasGroup(value);
+        onHomeScreen.enabled = value;
     }
 
     private void GameStartHandler()
     {
-        menuScreen.EnableCanvasGroup(false);
-        playtimeScreen.EnableCanvasGroup(true);
+        menuScreen.enabled = false;
+        playtimeScreen.enabled = true;
     }
 
     private void PlayerDeathHandler()
     {
-        gameOverScreen.EnableCanvasGroup(true);
+        gameOverScreen.enabled = true;
     }
 
     private void PlayerFinishHandler()
     {
-        playtimeScreen.EnableCanvasGroup(false);
-        finishScreen.EnableCanvasGroup(true);
+        playtimeScreen.enabled = false;
+        finishScreen.enabled = true;
     }
 }

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class UIResultPanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI characterNameText = default;
@@ -13,10 +14,26 @@ public class UIResultPanel : MonoBehaviour
     public TextMeshProUGUI PointsText => pointsText;
     [SerializeField] private Image backgroundImage = default;
     public Image BackgroundImage => backgroundImage;
+
+    private CanvasGroup canvasGroup = default;
+
+    private bool isVisible = false;
+    
+    public bool IsVisible
+    {
+        get => isVisible;
+        set
+        {
+            isVisible = value;
+            canvasGroup.alpha = isVisible ? 1f : 0f;
+        }
+    }
     
     private void Awake()
     {
-        #if UNITY_EDITOR
+        canvasGroup = GetComponent<CanvasGroup>();
+
+#if UNITY_EDITOR
 
         CustomTools.IsNull(characterNameText, nameof(characterNameText), name);
         CustomTools.IsNull(pointsText, nameof(pointsText), name);

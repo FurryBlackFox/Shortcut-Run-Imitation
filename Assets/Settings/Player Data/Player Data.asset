@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Player Data
   m_EditorClassIdentifier: 
   plankMaterialOpaque: {fileID: 2100000, guid: 8c6ed1e51bf2b4f439f676dc22f94189, type: 2}
-  coinsCount: 0
+  coinsCount: 2079
   playerName: Player
   currentLevel: 0
+  currentSkin: {fileID: 7732264026007071617, guid: a761b177e0510c2408d88fc629e32206,
+    type: 3}
