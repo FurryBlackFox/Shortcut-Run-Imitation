@@ -28,7 +28,7 @@ public class UICharactersResultPointsController : MonoBehaviour
         if(hideUIOnStart)
             foreach (var resultPanel in UIResultPanels)
             {
-                resultPanel.gameObject.SetActive(false);
+                resultPanel.IsVisible = false;
             }
     }
 
@@ -48,8 +48,8 @@ public class UICharactersResultPointsController : MonoBehaviour
     private void SetResult(Character character, int points)
     {
         var panel = UIResultPanels[currentFinishPosition];
-        if(playerFinished)
-            panel.gameObject.SetActive(true);
+        if (playerFinished)
+            panel.IsVisible = true;
         panel.CharacterNameText.SetText(character.CharacterName);
         panel.PointsText.SetText($"{points}");
         currentFinishPosition++;
@@ -62,11 +62,11 @@ public class UICharactersResultPointsController : MonoBehaviour
         
         for (var i = 0; i < currentFinishPosition; i++)
         {
-            UIResultPanels[i].gameObject.SetActive(true);
+            UIResultPanels[i].IsVisible = true;
         }
         
         SetPlayerPanel();
-        CalculatePadding();
+        //CalculatePadding();
     }
 
     private void SetPlayerPanel()

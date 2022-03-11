@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class LevelSequence : ScriptableObject
 {
     [SerializeField] private List<string> levelsList = default;
-
     public List<string> LevelsList => levelsList;
+
+    [SerializeField] private string shopLevel;
+    public string ShopLevel => shopLevel;
 }

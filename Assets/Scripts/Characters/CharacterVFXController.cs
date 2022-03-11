@@ -16,14 +16,31 @@ public class CharacterVFXController : MonoBehaviour
     [SerializeField] private ParticleSystem firstPositionEffect = default;
     [SerializeField] private ParticleSystem crownSmokeEffect = default;
     [SerializeField] protected float speedBoostThreshold = 1.2f;
-    [SerializeField] protected GameObject firstPlaceCrownGO = default;
-    
+    [SerializeField] protected GameObject leaderCrown = default;
+
+
+    public GameObject LeaderCrown
+    {
+        get => leaderCrown;
+        set
+        {
+            leaderCrown = value;
+            leaderCrown.SetActive(false);
+        }
+    }
     
     protected Character character;
+
+    private CharacterSkinController skinController;
     
     protected virtual void Awake()
     {
         character = GetComponent<Character>();
+
+        if (TryGetComponent(out skinController))
+        {
+            skinController.OnSkinChange += OnEmergeHandler;
+        }
 
         if (!nonChildEffectsRoot)
             nonChildEffectsRoot = new GameObject("VFX Root").transform;
@@ -31,7 +48,7 @@ public class CharacterVFXController : MonoBehaviour
         waterSplashEffect.transform.parent = nonChildEffectsRoot;
         waterRipplesEffect.transform.parent = nonChildEffectsRoot;
         
-        firstPlaceCrownGO.SetActive(false);
+        leaderCrown.SetActive(false);
         
 
     }
@@ -90,7 +107,7 @@ public class CharacterVFXController : MonoBehaviour
         if (character != firstCharacter) 
             return;
         
-        firstPlaceCrownGO.SetActive(true);
+        leaderCrown.SetActive(true);
         firstPositionEffect.Play();
         crownSmokeEffect.Play();
     }
@@ -100,7 +117,7 @@ public class CharacterVFXController : MonoBehaviour
         if (character != lostCharacter) 
             return;
         
-        firstPlaceCrownGO.SetActive(false);
+        leaderCrown.SetActive(false);
         crownSmokeEffect.Play();
     }
 }

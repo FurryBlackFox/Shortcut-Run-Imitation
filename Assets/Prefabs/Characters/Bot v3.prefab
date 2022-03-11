@@ -36781,7 +36781,7 @@ MonoBehaviour:
   firstPositionEffect: {fileID: 4464030376559178457}
   crownSmokeEffect: {fileID: 966068315433286015}
   speedBoostThreshold: 1.2
-  firstPlaceCrownGO: {fileID: 1121668076379276718}
+  leaderCrown: {fileID: 1121668076379276718}
 --- !u!114 &988395963914972600
 MonoBehaviour:
   m_ObjectHideFlags: 0

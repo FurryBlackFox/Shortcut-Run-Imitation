@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level 3.unity
     guid: 6848a4e3073a2ec4f961da4084387f28
+  - enabled: 1
+    path: Assets/Scenes/Shop/PlayerSkinShop.unity
+    guid: 96d698bf9e9bc554f86f107720bdb764
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0330dbbef7ecc64468dd147d450c8b4c,
       type: 2}
